@@ -13,19 +13,19 @@ export const MainView = () => {
         .then ((data) => {
             const moviesFromApi = data.map((doc) => {
                 return {
-                  id: doc._id,
-                  title: doc.title,
-                  description: doc.description,
-                  genreName: doc.genre.name,
-                //   genreDescription: doc.genre.description,
-                 //  directorName: doc.director.name,
-                 //  directorBio: doc.director.bio,
-                //  directorBirthYear: doc.director.birthYear,
-                 //  directorDeathYear: doc.director.deathYear,
-                //  actors: doc.actors,
-                  imageURL: doc.imageURL,
-                  isFeatured: doc.isFeatured,
-                  year: doc.year
+                    id: doc._id,
+                    title: doc.title,
+                    description: doc.description,
+                    genreName: doc.genre.name,
+                    genreDescription: doc.genre.description,
+                    directorName: doc.director.name,
+                    directorBio: doc.director.bio,
+                    directorBirthYear: doc.director.birthYear,
+                    directorDeathYear: doc.director.deathYear,
+                    actors: doc.actors,
+                    imageURL: doc.imageURL,
+                    isFeatured: doc.isFeatured,
+                    year: doc.year
                };
            });
 
