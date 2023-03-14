@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
+import { LoginView } from "../login-view/login-view";
 import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 
 export const MainView = () => {
     const [movies, setMovies] = useState([]);
-
     const [selectedMovie, setSelectedMovie] = useState(null);
+    const [user, setUser] = useState(null);
+
+    if (!user) {
+        return <LoginView onLoggedIn={(user) => setUser(user)} />;
+    }
 
     useEffect(() => {
         fetch('https://myflix-movieapp.herokuapp.com/movies')
@@ -34,6 +39,9 @@ export const MainView = () => {
         });
     }, []);
 
+    
+
+  
     if(selectedMovie) {
         return (
             <MovieView movie={selectedMovie} onBackClick={() => setSelectedMovie(null)} />
