@@ -27251,7 +27251,7 @@ const MovieCard = ({ movieData , onMovieClick  })=>{
 };
 _c = MovieCard;
 MovieCard.propTypes = {
-    movie: (0, _propTypes.PropTypes).shape({
+    movieData: (0, _propTypes.PropTypes).shape({
         title: (0, _propTypes.PropTypes).string.isRequired,
         description: (0, _propTypes.PropTypes).string.isRequired,
         genreName: (0, _propTypes.PropTypes).string.isRequired,
