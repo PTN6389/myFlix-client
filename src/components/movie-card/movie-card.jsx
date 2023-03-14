@@ -20,10 +20,10 @@ MovieCard.propTypes = {
         directorBio: PropTypes.string.isRequired,
         directorBirthYear: PropTypes.number.isRequired,
         directorDeathYear: PropTypes.number,
-        actors: PropTypes.string,
+        actors: PropTypes.array,
         imageURL: PropTypes.string.isRequired,
         year: PropTypes.number.isRequired,
-        isFeatured: PropTypes.string
+        isFeatured: PropTypes.bool
     }).isRequired,
     onMovieClick: PropTypes.func.isRequired
 };

@@ -27260,10 +27260,10 @@ MovieCard.propTypes = {
         directorBio: (0, _propTypes.PropTypes).string.isRequired,
         directorBirthYear: (0, _propTypes.PropTypes).number.isRequired,
         directorDeathYear: (0, _propTypes.PropTypes).number,
-        actors: (0, _propTypes.PropTypes).string,
+        actors: (0, _propTypes.PropTypes).array,
         imageURL: (0, _propTypes.PropTypes).string.isRequired,
         year: (0, _propTypes.PropTypes).number.isRequired,
-        isFeatured: (0, _propTypes.PropTypes).string
+        isFeatured: (0, _propTypes.PropTypes).bool
     }).isRequired,
     onMovieClick: (0, _propTypes.PropTypes).func.isRequired
 };
@@ -28201,7 +28201,7 @@ const MovieView = ({ movie , onBackClick  })=>{
         children: [
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                 children: /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("img", {
-                    src: "{movie.imageURL}"
+                    src: movie.imageURL
                 }, void 0, false, {
                     fileName: "src/components/movie-view/movie-view.jsx",
                     lineNumber: 5,
