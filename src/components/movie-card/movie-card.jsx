@@ -21,7 +21,7 @@ MovieCard.propTypes = {
         directorBirthYear: PropTypes.number.isRequired,
         directorDeathYear: PropTypes.number,
         actors: PropTypes.array,
-        imageURL: PropTypes.string.isRequired,
+        imageURL: PropTypes.string,
         year: PropTypes.number.isRequired,
         isFeatured: PropTypes.bool
     }).isRequired,
