@@ -1,51 +1,26 @@
+import Card from 'react-bootstrap/Card';
+import Nav from 'react-bootstrap/Nav';
+import Button from 'react-bootstrap/Button';
+
 export const MovieView = ({ movie, onBackClick }) => {
     return (
-        <div>
-            <div>
-                <img src={movie.imageURL} />
-            </div>
-            <div>
-                <span>Title:</span>
-                <span>{ movie.title }</span>  
-            </div>
-            <div>
-                <span>Description:</span>
-                <span>{ movie.description }</span>
-            </div>
-            <div>
-                <span>Director: </span>
-                <span>{ movie.directorName }</span>
-            </div>
-            <div>
-                <span>Director Biography: </span>
-                <span>{ movie.directorBio }</span>
-            </div>
-            <div>
-                <span>Director Birth Year: </span>
-                <span>{ movie.directorBirthYear }</span>
-            </div>
-            <div>
-                <span>Director Death Year: </span>
-                <span>{ movie.directorDeathYear }</span>
-            </div>
-            <div>
-                <span>Genre Name: </span>
-                <span>{ movie.genreName }</span>
-            </div>
-            <div>
-                <span>Genre Description: </span>
-                <span>{ movie.genreDescription }</span>
-            </div>
-            <div>
-                <span>Year: </span>
-                <span>{ movie.year }</span>
-            </div>
-            <div>
-                <span>Featured: </span>
-                <span>{ movie.isFeatured }</span>
-            </div>
-            <button onClick={onBackClick}>Back</button>
-        </div>
+
+        <Card className="h-100" style={{ width: '48rem' }}>
+            <Card.Img variant="top" src={movie.imageURL} alt={movie.title} />
+            <Card.Body>
+                <Card.Title>{movie.title}</Card.Title>
+                <Card.Text>{ movie.description }</Card.Text>
+                <Card.Text>{ movie.year }</Card.Text>      
+                <Card.Subtitle>Director Information</Card.Subtitle>
+                <Card.Text>{ movie.directorName } ({ movie.directorBirthYear } - { movie.directorDeathYear })</Card.Text>
+                <Card.Text>{ movie.directorBio }</Card.Text>
+                <Card.Subtitle>Genre Information</Card.Subtitle>
+                <Card.Text>{ movie.genreName }</Card.Text>
+                <Card.Text>Description: { movie.genreDescription }</Card.Text>
+                <Card.Text>Featured: { movie.isFeatured }</Card.Text>
+                <Button onClick={onBackClick} variant="primary">Back</Button>
+            </Card.Body>
+        </Card>
     )
 
 }
