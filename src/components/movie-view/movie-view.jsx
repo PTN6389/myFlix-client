@@ -9,28 +9,16 @@ export const MovieView = ({ movie, onBackClick }) => {
             <Card.Img variant="top" src={movie.imageURL} alt={movie.title} />
             <Card.Body>
                 <Card.Title>{movie.title}</Card.Title>
-                <Card.Text>
-                    <div className="mb-4">
-                        <p>{ movie.description }</p>
-                        <p>{ movie.year }</p>
-                    </div>
-                    <div className="mb-4">
-                        <h6>Director Information</h6>
-                        <span>{ movie.directorName } ({ movie.directorBirthYear } - { movie.directorDeathYear }) </span>
-                        <p>{ movie.directorBio }</p>
-                    </div>                
-                    <div className="mb-4">
-                        <p></p>
-                        <h6>Genre Information</h6>
-                        <span>{ movie.genreName }</span>
-                        <p>Description: { movie.genreDescription }</p>
-                    </div>
-                    <div className="mb-4">
-                        <p>Featured:</p>  
-                        <span>{ movie.isFeatured }</span>
-                    </div>
-                </Card.Text>
-                    <Button onClick={onBackClick} variant="primary">Back</Button>
+                <Card.Text>{ movie.description }</Card.Text>
+                <Card.Text>{ movie.year }</Card.Text>      
+                <Card.Subtitle>Director Information</Card.Subtitle>
+                <Card.Text>{ movie.directorName } ({ movie.directorBirthYear } - { movie.directorDeathYear })</Card.Text>
+                <Card.Text>{ movie.directorBio }</Card.Text>
+                <Card.Subtitle>Genre Information</Card.Subtitle>
+                <Card.Text>{ movie.genreName }</Card.Text>
+                <Card.Text>Description: { movie.genreDescription }</Card.Text>
+                <Card.Text>Featured: { movie.isFeatured }</Card.Text>
+                <Button onClick={onBackClick} variant="primary">Back</Button>
             </Card.Body>
         </Card>
     )
