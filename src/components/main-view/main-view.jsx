@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { NavigationBar } from "../navigation-bar/navigation-bar";
 import { LoginView } from "../login-view/login-view";
 import { SignupView } from "../signup-view/signup-view";
 import { MovieCard } from "../movie-card/movie-card";
@@ -47,6 +48,12 @@ export const MainView = () => {
 
     return (
         <BrowserRouter>
+            <NavigationBar
+                user={user}
+                onLoggedOut={() => {
+                    setUser(null);
+                }} 
+            />
             <Row>
                 <Routes>
                     <Route
@@ -112,7 +119,7 @@ export const MainView = () => {
                                 ) : movies.length === 0 ? (
                                         <Col md={8}>
                                             <div>The movies list is empty
-                                            <button onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</button>
+                                            
                                             </div>
                                         </Col>  
                                 ) : (
@@ -124,7 +131,7 @@ export const MainView = () => {
                                             onMovieClick={(newSelectedMovie) => {
                                             setSelectedMovie(newSelectedMovie);
                                             }} />
-                                            <button onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</button>
+                                            
                                         </Col>
                             ))};
                                   </>  
