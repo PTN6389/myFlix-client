@@ -2,12 +2,13 @@ import Card from 'react-bootstrap/Card';
 import Nav from 'react-bootstrap/Nav';
 import Button from 'react-bootstrap/Button';
 import { useParams } from 'react-router';
+import { MovieCard} from '../movie-card/movie-card';
 import { Link } from "react-router-dom";
 
-export const MovieView = ({ movie, onBackClick }) => {
-    const { movieID } = useParams();
+export const MovieView = ({ movies }) => {
+    const { movieId } = useParams();
 
-    const movie = movies.find((m) => m.id === movieID);
+    const movie = movies.find((m) => m.id === movieId);
 
     return (
 

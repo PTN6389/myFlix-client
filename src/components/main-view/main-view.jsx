@@ -89,15 +89,16 @@ export const MainView = () => {
                                 ) : movies.length === 0 ? (
                                         <Col md={8}>
                                             <div>The movies list is empty
-                                            <button onClick={() => { setUser(null); setToken(null); localStorage.clear(); }}>Logout</button>
                                             </div>
                                         </Col>  
                                 ) : (
                                     <Col md={8}>
-                                        <MovieView 
-                                        movie={selectedMovie} 
+                                        <MovieView
+                                        movies={movies} 
+                                        //movie={selectedMovie} 
                                         onBackClick={() => setSelectedMovie(null)} />
                                     </Col>
+                                    
                                 )} 
                             </>
                         }
