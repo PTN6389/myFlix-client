@@ -11,11 +11,15 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 export const MainView = () => {
     const storedUser = JSON.parse(localStorage.getItem("user"));
-    const storedToken = localStorage.getItem("token");
+    const storedToken = localStorage.getItem("token"); 
     const [user, setUser] = useState(storedUser? storedUser : null);
     const [token, setToken] = useState(storedToken? storedToken : null);
     const [movies, setMovies] = useState([]);
-    const [selectedMovie, setSelectedMovie] = useState(null);
+
+    const updateUser = user => {
+        setUser(user);
+        localStorage.setItem("user", JSON.stringify(user));
+    }
     
    useEffect(() => {
         if (!token) return; 
@@ -143,15 +147,20 @@ export const MainView = () => {
                     <Route 
                         path="/profile"
                         element={
-                            <>
-                                {!user ? (
+                            
+                                !user ? (
                                     <Navigate to="/login" replace />
                                 ) : (
                                     <Col md={8}>
-                                        <ProfileView />
+                                        <ProfileView user={user} token={token} onLoggedOut={() => {
+                                            setUser(null);
+                                            setToken(null);
+                                            localStorage.clear();
+                                        }}
+                                        updateUser={updateUser}/>
                                     </Col>
-                                    )}
-                            </>
+                                    )
+                            
                         }
                     />
                     

@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import { Button, Form, Card, Col } from 'react-bootstrap';
 
-export const ProfileView = () => {
+
+export const ProfileView = ({ user, token, updateUser, onLoggedOut }) => {
     const [name, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
@@ -18,26 +18,64 @@ export const ProfileView = () => {
             birthday: birthday
         };
 
-        fetch("https://myflix-movieapp.herokuapp.com/users", {
-            method: "POST",
+        fetch(`https://myflix-movieapp.herokuapp.com/users/user/${user.name}`, {
+            method: "PUT",
             body: JSON.stringify(data),
             headers: {
+                Authorization: `Bearer ${token}`,
                 "Content-Type": "application/json"
             }
         }).then((response) => {
             if (response.ok) {
-                alert("Signup successful");
-                window.location.reload();
+               return response.json();
             } else {
-                alert("Signup failed");
+                alert("Profile update failed");
             }
+        })
+        .then(user => {
+            if (user) {
+                alert("Profile update successful");
+                updateUser(user);
+            }
+        })
+        .catch(e => {
+            alert(e);
         });
     };
 
-    return (
+    const deleteProfile = () => {
+        fetch(`https://myflix-movieapp.herokuapp.com/users/${user.name}`, {
+            method: 'DELETE',
+            headers: {Authorization: `Bearer ${token}`}
+        })
+        .then(response => {
+            if (response.ok) {
+                alert("Profile delete successful");
+                onLoggedOut();
+            } else {
+                alert("Profile delete failed");
+            }
+        })
+        .catch(e => {
+            alert(e);
+        });
+    }
 
+    return (
+        <>
+        <Card className="mt-3 mb-3" style={{ width: '18rem' }}>
+            <Card.Body>
+                <Card.Title>Profile Details:</Card.Title>
+                <Card.Text>Username: {user.name}</Card.Text>
+                <Card.Text>Email: {user.email}</Card.Text>
+                <Card.Text>Birthday: {user.birthday.slice(0, 10)}</Card.Text>
+                  
+            </Card.Body>
+        </Card>    
+        <hr className="mt-3 mb-3"></hr>
+        <h4>Update Profile</h4>
         <Form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="formUsername">
+            <Form.Group className="mt-3 mb-3" controlId="formUsername">
                 <Form.Label>Username</Form.Label>
                 <Form.Control 
                     type="text" 
@@ -71,9 +109,9 @@ export const ProfileView = () => {
                     required />
             </Form.Group>
 
-            <Button variant="primary" type="submit">
-                Submit
-            </Button>
+            <Button variant="primary" className="me-5" type="submit" >Submit</Button>
+            <Button variant="danger" onClick={() => {deleteProfile()}} >Delete Profile</Button> 
         </Form>
+        </>
     );
 }
