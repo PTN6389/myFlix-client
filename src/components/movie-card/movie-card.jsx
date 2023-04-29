@@ -24,7 +24,7 @@ MovieCard.propTypes = {
         description: PropTypes.string.isRequired,
         genreName: PropTypes.string.isRequired,
         genreDescription: PropTypes.string,
-        directorName: PropTypes.string.isRequired,
+        directorName: PropTypes.string,
         directorBio: PropTypes.string.isRequired,
         directorBirthYear: PropTypes.number.isRequired,
         directorDeathYear: PropTypes.number,
