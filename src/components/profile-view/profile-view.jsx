@@ -115,12 +115,17 @@ export const ProfileView = ({ user, token, updateUser, movies, onLoggedOut }) =>
             <Button variant="primary" className="me-5" type="submit" >Submit</Button>
             <Button variant="danger" onClick={() => {deleteProfile()}} >Delete Profile</Button> 
         </Form>
+        <hr className="mt-3 mb-3"></hr>
+        <h4>My Favorite Movies</h4>
 
         {favoriteMovies.map(movie => (
-            <Col key={movie.id} s={3} className="mb-5">
-                <MovieCard movie={movie}/>
+            
+            <Col key={movie.id} className="mb-5">
+                <MovieCard movieData={movie}/>
             </Col>
-        ))};
+           
+            
+        ))}
         </>
     );
 }

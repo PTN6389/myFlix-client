@@ -108,7 +108,15 @@ export const MainView = () => {
                                 ) : (
                                     <Col md={8}>
                                         <MovieView
-                                        movies={movies} 
+                                        movies={movies}
+                                        user={user}
+                                        token={token}
+                                        onLoggedOut={() => {
+                                            setUser(null);
+                                            setToken(null);
+                                            localStorage.clear();
+                                        }}
+                                        updateUser={updateUser}
                                         //movie={selectedMovie} 
                                         onBackClick={() => setSelectedMovie(null)} />
                                     </Col>
@@ -159,7 +167,8 @@ export const MainView = () => {
                                             setToken(null);
                                             localStorage.clear();
                                         }}
-                                        updateUser={updateUser}/>
+                                        updateUser={updateUser}
+                                        movies={movies}/>
                                     </Col>
                                     )
                             
