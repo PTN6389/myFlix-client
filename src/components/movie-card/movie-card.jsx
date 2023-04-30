@@ -1,6 +1,7 @@
 import { PropTypes } from "prop-types";
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
+import { Link } from "react-router-dom";
 
 export const MovieCard = ({ movieData, onMovieClick }) => {
     return (
@@ -9,7 +10,9 @@ export const MovieCard = ({ movieData, onMovieClick }) => {
             <Card.Body>
                 <Card.Title>{movieData.title}</Card.Title>
                 <Card.Text>Director: {movieData.directorName}</Card.Text>
-                <Button onClick={() => {onMovieClick(movieData)}} variant="primary" >Movie Details</Button>
+                <Link to={`/movies/${encodeURIComponent(movieData.id)}`}>
+                    <Button variant="primary" >Movie Details</Button>
+                </Link>
             </Card.Body>
         </Card>    
     );
@@ -20,8 +23,8 @@ MovieCard.propTypes = {
         title: PropTypes.string.isRequired,
         description: PropTypes.string.isRequired,
         genreName: PropTypes.string.isRequired,
-        genreDescription: PropTypes.string.isRequired,
-        directorName: PropTypes.string.isRequired,
+        genreDescription: PropTypes.string,
+        directorName: PropTypes.string,
         directorBio: PropTypes.string.isRequired,
         directorBirthYear: PropTypes.number.isRequired,
         directorDeathYear: PropTypes.number,
