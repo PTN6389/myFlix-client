@@ -15,6 +15,7 @@ export const MainView = () => {
     const [user, setUser] = useState(storedUser? storedUser : null);
     const [token, setToken] = useState(storedToken? storedToken : null);
     const [movies, setMovies] = useState([]);
+    const [viewMovies, setViewMovies] = useState(movies);
 
     const updateUser = user => {
         setUser(user);
@@ -51,6 +52,10 @@ export const MainView = () => {
         })
     }, [token]);
 
+    useEffect(() => {
+        setViewMovies(movies);
+    }, [movies]);
+
     return (
         <BrowserRouter>
             <NavigationBar
@@ -60,6 +65,11 @@ export const MainView = () => {
                     setToken(null);
                     localStorage.clear();
                 }} 
+                onSearch={(query) => {
+                    setViewMovies(movies.filter(movie => movie.title.toLowerCase().includes(query.toLowerCase())));
+                    console.log(movie => movie.title.toLowerCase());
+                    console.log(query.toLowerCase());
+                }}
             />
             <Row>
                 <Routes>
@@ -140,7 +150,7 @@ export const MainView = () => {
                                 ) : (
                                   <>
                                     {movies.map((movie) => (
-                                        <Col key={movie.id} s={3} className="mb-5">
+                                        <Col key={movie.id} s={3} className="mt-3 mb-5">
                                             <MovieCard 
                                             movieData={movie}
                                             onMovieClick={(newSelectedMovie) => {
